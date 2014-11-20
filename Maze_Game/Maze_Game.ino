@@ -36,29 +36,76 @@
 int xcoord = 3;
 int ycoord = 4;                  //Global variables go here
 
+
 void setup()                    // run once, when the sketch starts
 {
-  MeggyJrSimpleSetup();      // Required code, line 2 of 2.
+  MeggyJrSimpleSetup();    // Required code, line 2 of 2.
+}
+
+void walls()
+{
+   DrawPx(0,1,White);
+    DrawPx(0,2,White);
+    DrawPx(1,3,White);
+    DrawPx(1,4,White);
+    DrawPx(1,5,White);
+    DrawPx(1,6,White);
+    DrawPx(1,8,White);
+    DrawPx(2,0,White);
+    DrawPx(3,2,White);
+    DrawPx(3,3,White);
+    DrawPx(3,5,White);
+    DrawPx(3,8,White);
+    DrawPx(4,1,White);
+    DrawPx(4,2,White);
+    DrawPx(4,5,White);
+    DrawPx(4,6,White);
+    DrawPx(4,7,White);
+    DrawPx(5,2,White);
+    DrawPx(5,3,White);
+    DrawPx(6,0,White);
+    DrawPx(6,1,White);
+    DrawPx(6,2,White);
+    DrawPx(6,5,White);
+    DrawPx(6,7,White);
+    DrawPx(7,4,White);
+    DrawPx(7,5,White);
+    
+    DisplaySlate();
 }
 
 void loop()                //Runs repeatedly
 {
    CheckButtonsDown();
+   
    if (Button_Right)            //If Right button pressed, move one right
    {
      if (xcoord < 7)
        xcoord = xcoord + 1;    
      else 
        xcoord = 0;
+       
    }
    
    if (Button_Left)             //If Left button pressed, move one left
    {
      if (xcoord > 0)
-       xcoord = xcoord - 1;
-     else
-       xcoord = 7;
+     {
+       if(ReadPx(xcoord - 1, ycoord) == White)
+       {
+         xcoord - 1;
+       }
+       else
+       {
+         if (xcoord > 0)
+           xcoord = xcoord - 1;
+         else
+           xcoord = 7;
+       }
+     
+     }
    }
+   
    if (Button_Up)                 //If Up button pressed, move one up
    {
      if (ycoord < 7)
@@ -74,13 +121,17 @@ void loop()                //Runs repeatedly
        
      else 
        ycoord = 7;
+       
+   
    }
    
+   walls();
    
    DrawPx(xcoord,ycoord,Red);        //Draws Dot
    DisplaySlate();
    delay(150);
    ClearSlate();
+   
 }
 
 
