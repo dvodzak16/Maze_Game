@@ -42,96 +42,110 @@ void setup()                    // run once, when the sketch starts
   MeggyJrSimpleSetup();    // Required code, line 2 of 2.
 }
 
-void walls()
-{
-   DrawPx(0,1,White);
-    DrawPx(0,2,White);
-    DrawPx(1,3,White);
-    DrawPx(1,4,White);
-    DrawPx(1,5,White);
-    DrawPx(1,6,White);
-    DrawPx(1,8,White);
-    DrawPx(2,0,White);
-    DrawPx(3,2,White);
-    DrawPx(3,3,White);
-    DrawPx(3,5,White);
-    DrawPx(3,8,White);
-    DrawPx(4,1,White);
-    DrawPx(4,2,White);
-    DrawPx(4,5,White);
-    DrawPx(4,6,White);
-    DrawPx(4,7,White);
-    DrawPx(5,2,White);
-    DrawPx(5,3,White);
-    DrawPx(6,0,White);
-    DrawPx(6,1,White);
-    DrawPx(6,2,White);
-    DrawPx(6,5,White);
-    DrawPx(6,7,White);
-    DrawPx(7,4,White);
-    DrawPx(7,5,White);
-    
-    DisplaySlate();
-}
+
+
 
 void loop()                //Runs repeatedly
 {
-   CheckButtonsDown();
+  
    
-   if (Button_Right)            //If Right button pressed, move one right
-   {
-     if (xcoord < 7)
-       xcoord = xcoord + 1;    
-     else 
-       xcoord = 0;
-       
-   }
-   
-   if (Button_Left)             //If Left button pressed, move one left
-   {
-     if (xcoord > 0)
-     {
-       if(ReadPx(xcoord - 1, ycoord) == White)
-       {
-         xcoord - 1;
-       }
-       else
-       {
-         if (xcoord > 0)
-           xcoord = xcoord - 1;
-         else
-           xcoord = 7;
-       }
-     
-     }
-   }
-   
-   if (Button_Up)                 //If Up button pressed, move one up
-   {
-     if (ycoord < 7)
-       ycoord = ycoord + 1;
-       
-     else
-       ycoord = 0;
-   }
-   if (Button_Down)            
-   {
-     if (ycoord > 0)
-       ycoord = ycoord - 1;
-       
-     else 
-       ycoord = 7;
-       
-   
-   }
-   
-   walls();
    
    DrawPx(xcoord,ycoord,Red);        //Draws Dot
    DisplaySlate();
    delay(150);
    ClearSlate();
+   CheckButtonsDown();
+    DrawPx(0,1,5);
+    DrawPx(0,2,5);
+    DrawPx(1,3,5);
+    DrawPx(1,4,5);
+    DrawPx(1,5,5);
+    DrawPx(1,6,5);
+    DrawPx(1,8,5);
+    DrawPx(2,0,5);
+    DrawPx(3,2,5);
+    DrawPx(3,3,5);
+    DrawPx(3,5,5);
+    DrawPx(3,8,5);
+    DrawPx(4,1,5);
+    DrawPx(4,2,5);
+    DrawPx(4,5,5);
+    DrawPx(4,6,5);
+    DrawPx(4,7,5);
+    DrawPx(5,4,5);
+    DrawPx(6,0,5);
+    DrawPx(6,1,5);
+    DrawPx(6,2,5);
    
+    DrawPx(6,7,5);
+    DrawPx(7,4,5);
+    DrawPx(7,5,5);
+   
+   
+   
+   if (Button_Right)            //If Right button pressed, move one right
+   {
+     if(ReadPx(xcoord+1,ycoord)==5){
+     }
+     else
+       xcoord++;
+   }
+   {
+     if(xcoord > 7)
+     {
+       xcoord=7;
+     }
+   }
+   
+  
+      if (Button_Left)        //If Left button pressed, move one left
+      {  
+        if(ReadPx(xcoord-1,ycoord)==5){
+        }
+        else
+          xcoord--;
+      }
+      {
+        if (xcoord < 0)
+        {
+          xcoord = 0;
+        }
+      }
+    
+   
+   
+   if (Button_Up)                 //If Up button pressed, move one up
+   {
+     if(ReadPx(xcoord,ycoord+1)==5){
+     }
+     else
+       ycoord++;
+   }
+   {
+     if (ycoord > 7)
+     {
+       ycoord = 7;
+     }
+     else
+       ycoord+1;
+   }
+   
+   if (Button_Down)
+  {
+    if(ReadPx(xcoord,ycoord-1)==5) {       
+ }
+     else
+       ycoord--;
+  }
+    {
+     if (ycoord < 0)
+   {
+       ycoord = 0;
+   }
+     else 
+       ycoord-1;
+   }
+  
 }
 
 
