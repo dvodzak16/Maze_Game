@@ -37,6 +37,8 @@ int xcoord = 3;
 int ycoord = 4;                  //Global variables go here
 
 
+
+
 void setup()                    // run once, when the sketch starts
 {
   MeggyJrSimpleSetup();    // Required code, line 2 of 2.
@@ -49,14 +51,17 @@ void loop()                //Runs repeatedly
 {
   
    
-   
    DrawPx(xcoord,ycoord,Red);        //Draws Dot
    DisplaySlate();
    delay(150);
    ClearSlate();
-   CheckButtonsDown();
+   CheckButtonsPress();
+    DrawPx(0,0,Yellow);
     DrawPx(0,1,5);
     DrawPx(0,2,5);
+    DrawPx(0,3,Yellow);
+    DrawPx(7,0,Yellow);
+    DrawPx(1,2,5);
     DrawPx(1,3,5);
     DrawPx(1,4,5);
     DrawPx(1,5,5);
@@ -73,10 +78,11 @@ void loop()                //Runs repeatedly
     DrawPx(4,6,5);
     DrawPx(4,7,5);
     DrawPx(5,4,5);
+    DrawPx(5,5,5);
+    DrawPx(5,7,Yellow);
     DrawPx(6,0,5);
     DrawPx(6,1,5);
     DrawPx(6,2,5);
-   
     DrawPx(6,7,5);
     DrawPx(7,4,5);
     DrawPx(7,5,5);
@@ -110,9 +116,14 @@ void loop()                //Runs repeatedly
         {
           xcoord = 0;
         }
+        
+      
+         
+        
+        
       }
     
-   
+  
    
    if (Button_Up)                 //If Up button pressed, move one up
    {
@@ -130,6 +141,7 @@ void loop()                //Runs repeatedly
        ycoord+1;
    }
    
+   
    if (Button_Down)
   {
     if(ReadPx(xcoord,ycoord-1)==5) {       
@@ -146,7 +158,20 @@ void loop()                //Runs repeatedly
        ycoord-1;
    }
   
+     
+   }
+void Coin()
+{
+     if(xcoord == 0 && ycoord == 3){
+       DrawPx(0,3,0); 
+       DisplaySlate();
+       ClearSlate();
+       DisplaySlate();
+     }
+   
+
 }
+
 
 
 
